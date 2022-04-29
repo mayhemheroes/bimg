@@ -3,9 +3,6 @@ project: WGibbs15/bimg-texturec
 # Target name (should be unique within the project)
 target: bimg-texturec
 
-# Base image to run the binary in.
-image: ghcr.io/wgibbs15/bimg-texturec:fuzz
-
 # List of commands used to test the target
 cmds:
 
