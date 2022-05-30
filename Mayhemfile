@@ -1,7 +1,6 @@
-project: WGibbs15/bimg-texturec
-
+project: bimg
 # Target name (should be unique within the project)
-target: bimg-texturec
+target: texturec
 
 # List of commands used to test the target
 cmds:
