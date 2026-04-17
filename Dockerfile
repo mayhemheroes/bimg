@@ -1,18 +1,14 @@
-FROM ubuntu:20.04 as builder
+FROM ubuntu:24.04 as builder
 
-## Install build dependencies.
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y cmake clang curl git g++
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cmake clang curl git g++
 
-## Add source code to the build stage.
-RUN git clone https://github.com/bkaradzic/bx 
+RUN git clone https://github.com/bkaradzic/bx
 
 ADD . /bimg
 WORKDIR /bimg
 
-RUN make linux
+RUN /bx/tools/bin/linux/genie --with-tools --gcc=linux-gcc gmake && \
+    make -C .build/projects/gmake-linux-gcc/ config=release64 texturec
 
-# Package Stage
-FROM ubuntu:20.04
-
+FROM ubuntu:24.04
 COPY --from=builder /bimg/.build/linux64_gcc/bin/texturecRelease /texturec
