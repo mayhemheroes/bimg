@@ -2,7 +2,7 @@ FROM ubuntu:24.04 as builder
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cmake clang curl git g++
 
-RUN git clone https://github.com/bkaradzic/bx
+RUN git clone https://github.com/bkaradzic/bx && cd /bx && git checkout 0f575d58808ca0837c3754d9902b754db6c25416
 
 ADD . /bimg
 WORKDIR /bimg
